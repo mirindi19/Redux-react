@@ -1,0 +1,25 @@
+.signup{
+    display: flex;
+
+    .wordsignup{
+        width: 45%;
+        height: 461px;
+        background-color: #00264D;
+        color: white;
+        text-align: center;
+        padding-top: 360px;
+    }
+    .inputsignup{
+        width: 55%;
+        height: 659px;
+        background-color: #f1f5f3;
+        padding-top: 10rem;
+        padding-left: 200px;
+    }
+    .wordsignup h1{
+        color: #F9842C;
+    }
+    .wordsignup p{
+        font-size: 20px;
+    }
+}

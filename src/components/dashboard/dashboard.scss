@@ -1,0 +1,9 @@
+.dashboard{
+        display: flex;
+        .Topnavs{
+            flex: 5;
+            .tables{
+                padding: 20px;
+            }
+        }
+}

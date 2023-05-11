@@ -1,0 +1,25 @@
+.signup{
+    display: flex;
+
+    .wordsignin{
+        width: 45%;
+        height: 461px;
+        background-color: #00264D;
+        color: white;
+        text-align: center;
+        padding-top: 360px;
+    }
+    .inputsignin{
+        width: 55%;
+        height: 613px;
+        background-color: #f1f5f3;
+        padding-top: 13rem;
+        padding-left: 200px;
+    }
+    .wordsignin h1{
+        color: #F9842C;
+    }
+    .wordsignin p{
+        font-size: 20px;
+    }
+}

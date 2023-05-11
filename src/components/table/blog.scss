@@ -1,0 +1,14 @@
+.blog{
+    display: flex;
+
+    .topbarBlog{
+        flex:5;
+
+        .blogTable{
+            padding: 20px;
+            .containerTable{
+                margin-top: 20px;
+            }
+        }
+    }
+}
