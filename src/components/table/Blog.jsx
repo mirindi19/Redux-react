@@ -15,6 +15,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Sidebar from '../siderbar/Siderbar';
 import Topbar from '../topbar/Topbar';
+import {useEffect, useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import { displayBlogAction } from '../../redux/actions/displayBlogAction';
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
@@ -29,6 +32,30 @@ function createData(name, calories, fat, carbs, protein) {
   ];
 
 const Blog = () => {
+
+
+  const dispatch = useDispatch();
+  const blogData = useSelector(state=>state.displayblog);
+  const [displayblog , setOrg] = useState("");
+  console.log("all data ", displayblog);
+  useEffect(()=>{
+    async function fetchData(){
+      await dispatch(displayBlogAction());
+  
+    }
+    fetchData();
+  },[])
+  useEffect(() => {
+    async function fetchData() {
+      if (!blogData.loading) {
+        if (blogData.data) {
+          setOrg(blogData.data);
+          
+        }
+      }
+    }
+    fetchData();
+  }, [!blogData.data]);
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -69,28 +96,27 @@ const Blog = () => {
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell>Dessert (100g serving)</TableCell>
-          <TableCell align="right">Calories</TableCell>
-          <TableCell align="right">Fat&nbsp;(g)</TableCell>
-          <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-          <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          <TableCell>title</TableCell>
+          <TableCell align="center">content</TableCell>
+          <TableCell align="center">Image</TableCell>
+          <TableCell align="center">Date</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
-          <TableRow
-            key={row.name}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              {row.name}
-            </TableCell>
-            <TableCell align="right">{row.calories}</TableCell>
-            <TableCell align="right">{row.fat}</TableCell>
-            <TableCell align="right">{row.carbs}</TableCell>
-            <TableCell align="right">{row.protein}</TableCell>
-          </TableRow>
-        ))}
+      {blogData.data?.map((row) => (
+        <TableRow key={row.name}>
+          <TableCell component="th" scope="row">
+            {row.title}
+          </TableCell>
+          <TableCell align="center">{row.content}</TableCell>
+          <TableCell align="center">{row.image}</TableCell>
+          <TableCell align="center">{row.date}</TableCell>
+          <TableCell align="center">
+            {" "}
+          
+          </TableCell>
+        </TableRow>
+      ))}
       </TableBody>
     </Table>
   </TableContainer>

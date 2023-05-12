@@ -3,8 +3,8 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-  } from "../";
-export const loginAction = (data, history) => async (dispatch) => {
+  } from "../types/LoginTypes";
+export const LoginAction = (data, history) => async (dispatch) => {
 
   try {
     dispatch(loginRequest());
@@ -16,14 +16,11 @@ console.log("our data",data)
     const user = await res.data;
     localStorage.setItem("access-token",user.data.token)
     if(user.data.role=="Admin"){
-        history.push('/organisation',{push:true}) 
+        history.push('/Dashboard',{push:true}) 
     }
-    if(user.data.role=="Datascientist"){
-      history.push('/dashboard',{push:true}) 
+    if(user.data.role=="user"){
+      history.push('/',{push:true}) 
   }
-    else if(user.data.role=="OrganizationUser"){
-        history.push('/upload',{push:true})
-    }
     dispatch(loginSuccess({ data: user.data }));
    
   } catch (err) {

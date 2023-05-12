@@ -1,0 +1,3 @@
+export const DBLOG_REQUEST = "DBLOG_REQUEST";
+export const DBLOG_SUCCESS = "DBLOG_SUCCESS";
+export const DBLOG_FAILURE = "DBLOG_FAILURE";

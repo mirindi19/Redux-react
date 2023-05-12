@@ -1,8 +1,11 @@
 import './signin.scss';
+import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch,useSelector } from "react-redux";
+import { LoginAction } from "../../redux/actions/LoginAction";
 
 const useStyles = makeStyles({
   button: {
@@ -10,6 +13,19 @@ const useStyles = makeStyles({
   },
 });
 const Signin = () => {
+
+  const dispatch=useDispatch();
+  const login=useSelector(state=>state.login)
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleSubmit= async()=>{
+    await dispatch(LoginAction({email,password}))
+    setEmail("")
+    setPassword("")
+    console.log(email,password)
+  }
     const classes = useStyles();
 
   return (
@@ -34,15 +50,29 @@ const Signin = () => {
       </div>
       <br></br>
       <br></br>
-        <TextField id="outlined-basic" label="Email" variant="outlined" /><br></br>
+        <TextField 
+        label="Email" 
+        variant="outlined" 
+        name="email"
+        value={email}
+        onChange={(e)=>setEmail(e.target.value)}
+        /><br></br>
         <TextField
-        id="outlined-password-input"
         label="Password"
         type="password"
         autoComplete="current-password"
+        name="password"
+        value={password}
+        onChange={(e)=>setPassword(e.target.value)}
       />
-      <Button variant="contained" disableElevation className={classes.button} style={{ background: '#00264D', width: '67ch'}}>
-        Login
+      <Button
+       variant="contained" 
+       disableElevation 
+       className={classes.button} 
+       style={{ background: '#00264D', width: '67ch'}}
+       onClick={handleSubmit}
+       >
+       {login.loading?"loading":"Login"}
     </Button>
       </Box>
         </div>
