@@ -7,12 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import Sidebar from '../siderbar/Siderbar';
 import Topbar from '../topbar/Topbar';
 import {useEffect, useState} from "react";
@@ -56,42 +50,13 @@ const Blog = () => {
     }
     fetchData();
   }, [!blogData.data]);
-    const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
   return (
     <div className='blog'>
     <Sidebar/>
     <div className='topbarBlog'>
     <Topbar/>
     <div className='blogTable'>
-    <Button variant="outlined" onClick={handleClickOpen}>
-    Add Blog
-  </Button>
-  <Dialog open={open} onClose={handleClose}>
-    <DialogTitle>Enter New Blog</DialogTitle>
-    <DialogContent style={{ width: 500 }}>
-      <TextField
-        autoFocus
-        margin="dense"
-        id="name"
-        label="Email Address"
-        type="email"
-        fullWidth
-        variant="standard"
-      />
-    </DialogContent>
-    <DialogActions>
-      <Button onClick={handleClose}>Cancel</Button>
-      <Button onClick={handleClose}>Subscribe</Button>
-    </DialogActions>
-  </Dialog>
     <TableContainer component={Paper} className='containerTable'>
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>

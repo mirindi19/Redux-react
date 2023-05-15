@@ -4,7 +4,7 @@ import {
     USER_SUCCESS,
     USER_FAILURE,
   } from "../types/SignupTypes";
-export const SignupAction = (data) => async (dispatch) => {
+export const SignupAction = (data,navigate) => async (dispatch) => {
   const {Fullname}=data
   const {age}=data
   const {email}=data 
@@ -25,7 +25,7 @@ console.log("our data",data)
     const org = await res.data;
     dispatch(registerSuccess({ data: org.data }));
     alert(" successfully");
-    
+    navigate('/signin', { replace: true });
    
   } catch (err) {
     console.log(err);

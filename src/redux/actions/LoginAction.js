@@ -4,7 +4,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
   } from "../types/LoginTypes";
-export const LoginAction = (data, history) => async (dispatch) => {
+
+export const LoginAction = (data,navigate) => async (dispatch) => {
 
   try {
     dispatch(loginRequest());
@@ -16,10 +17,10 @@ console.log("our data",data)
     const user = await res.data;
     localStorage.setItem("access-token",user.data.token)
     if(user.data.role=="Admin"){
-        history.push('/Dashboard',{push:true}) 
+        navigate('/Dashboard', { replace: true });
     }
     if(user.data.role=="user"){
-      history.push('/',{push:true}) 
+      navigate('/', { replace: true });
   }
     dispatch(loginSuccess({ data: user.data }));
    

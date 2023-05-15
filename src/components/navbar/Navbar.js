@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Home','About','Contact','Blog','Login'];
+const pages = ['Home','Login'];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 

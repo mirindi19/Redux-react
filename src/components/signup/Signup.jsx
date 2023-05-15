@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch,useSelector } from "react-redux";
 import { SignupAction } from "../../redux/actions/SignupAction"
+import { Link, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   button: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles({
   },
 });
 const Signup = () => {
+  const navigate=useNavigate();
   const dispatch=useDispatch();
   const signup=useSelector(state=>state.signup)
   
@@ -22,7 +24,7 @@ const Signup = () => {
   const [password, setPassword] = React.useState("");
 
   const handleSubmit= async()=>{
-    await dispatch(SignupAction({Fullname,age,email,password}))
+    await dispatch(SignupAction({Fullname,age,email,password},navigate))
     setFullname("")
     setAge("")
     setEmail("")
@@ -48,7 +50,7 @@ const Signup = () => {
       <div className='titlesig'>
       <h2>Signup</h2>
       <br></br>
-      <p>Do you have an account?  <b style={{color: '#00264D'}}>Get started</b></p>
+      <p>Do you have an account?  <Link to="/signin" style={{ textDecoration:"none"}}><b style={{color: '#00264D'}}>Get started</b></Link></p>
       </div>
       <br></br>
       <br></br>
